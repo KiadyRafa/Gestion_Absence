@@ -3,7 +3,6 @@ package school.hei.repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import school.hei.entity.Absence;
-
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -15,10 +14,11 @@ public class AbsenceDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(AbsenceDAO.class);
 
-    // Méthode pour récupérer toutes les absences
-    public List<Absence> findAllAbsences() {
+
+    public List<Absence> findAllAbsences(Pageable pageable) {
         List<Absence> absences = new ArrayList<>();
-        String sql = "SELECT * FROM Absence";
+        String sql = pageable.toPageableSql("SELECT * FROM Absence");
+
         try (Statement stmt = DBconnection.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -39,7 +39,6 @@ public class AbsenceDAO {
         return absences;
     }
 
-    // Méthode pour récupérer une absence par son ID
     public Absence findAbsenceById(int id) {
         Absence absence = null;
         String sql = "SELECT * FROM Absence WHERE Id_Absence = ?";
@@ -57,13 +56,11 @@ public class AbsenceDAO {
                 );
             }
         } catch (SQLException e) {
-
             logger.error("Erreur lors de la récupération de l'absence avec l'ID {}", id, e);
         }
         return absence;
     }
 
-    // Méthode pour créer une nouvelle absence
     public Absence createAbsence(Absence absence) {
         String sql = "INSERT INTO Absence (Date_Absence, Motif, Justification, Id_Etudiant, Id_Cours) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -89,7 +86,6 @@ public class AbsenceDAO {
         return absence;
     }
 
-    // Méthode pour supprimer une absence par son ID
     public void deleteAbsence(int id) {
         String sql = "DELETE FROM Absence WHERE Id_Absence = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
@@ -99,5 +95,4 @@ public class AbsenceDAO {
             logger.error("Erreur lors de la suppression de l'absence avec l'ID {}", id, e);
         }
     }
-
 }

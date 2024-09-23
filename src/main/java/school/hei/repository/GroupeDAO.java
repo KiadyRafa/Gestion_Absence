@@ -14,7 +14,7 @@ public class GroupeDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(GroupeDAO.class);
 
-    // Récupérer tous les groupes
+
     public List<Groupe> findAllGroupes() {
         List<Groupe> groupes = new ArrayList<>();
         String sql = "SELECT * FROM Groupe";
@@ -33,7 +33,7 @@ public class GroupeDAO {
         return groupes;
     }
 
-    // Récupérer un groupe par son ID
+
     public Groupe findGroupeById(int id) {
         Groupe groupe = null;
         String sql = "SELECT * FROM Groupe WHERE Id_Groupe = ?";
@@ -52,7 +52,7 @@ public class GroupeDAO {
         return groupe;
     }
 
-    // Créer un nouveau groupe
+
     public Groupe createGroupe(Groupe groupe) {
         String sql = "INSERT INTO Groupe (Nom_Groupe) VALUES (?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -73,7 +73,7 @@ public class GroupeDAO {
         return groupe;
     }
 
-    // Supprimer un groupe par son ID
+
     public void deleteGroupe(int id) {
         String sql = "DELETE FROM Groupe WHERE Id_Groupe = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {

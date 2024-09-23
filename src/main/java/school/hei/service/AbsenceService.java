@@ -6,12 +6,10 @@ import school.hei.entity.Absence;
 import school.hei.repository.AbsenceDAO;
 import school.hei.repository.Pageable;
 
-
 import java.util.List;
 
 @Service
 public class AbsenceService {
-
 
     private final AbsenceDAO absenceDAO;
 
@@ -20,8 +18,9 @@ public class AbsenceService {
         this.absenceDAO = absenceDAO;
     }
 
-    public List<Absence> getAllAbsences() {
-        return absenceDAO.findAllAbsences();
+
+    public List<Absence> getAllAbsences(Pageable pageable) {
+        return absenceDAO.findAllAbsences(pageable);
     }
 
     public Absence getAbsenceById(int id) {

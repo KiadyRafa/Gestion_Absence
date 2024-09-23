@@ -14,7 +14,7 @@ public class ProfesseurDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfesseurDAO.class);
 
-    // Méthode pour récupérer tous les professeurs
+
     public List<Professeur> findAllProfesseurs() {
         List<Professeur> professeurs = new ArrayList<>();
         String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur";
@@ -36,7 +36,7 @@ public class ProfesseurDAO {
         return professeurs;
     }
 
-    // Méthode pour récupérer un professeur par son ID
+
     public Professeur findProfesseurById(int id) {
         Professeur professeur = null;
         String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur WHERE Id_Professeur = ?";
@@ -58,7 +58,7 @@ public class ProfesseurDAO {
         return professeur;
     }
 
-    // Méthode pour créer un nouveau professeur (sans departement)
+
     public Professeur createProfesseur(Professeur professeur) {
         String sql = "INSERT INTO Professeur (Nom, Prenom, Email) VALUES (?, ?, ?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -81,7 +81,7 @@ public class ProfesseurDAO {
         return professeur;
     }
 
-    // Méthode pour supprimer un professeur par son ID
+
     public void deleteProfesseur(int id) {
         String sql = "DELETE FROM Professeur WHERE Id_Professeur = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {

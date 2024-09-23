@@ -14,7 +14,7 @@ public class NiveauDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(NiveauDAO.class);
 
-    // Récupérer tous les niveaux
+
     public List<Niveau> findAllNiveaux() {
         List<Niveau> niveaux = new ArrayList<>();
         String sql = "SELECT * FROM Niveau";
@@ -33,7 +33,7 @@ public class NiveauDAO {
         return niveaux;
     }
 
-    // Récupérer un niveau par son ID
+
     public Niveau findNiveauById(int id) {
         Niveau niveau = null;
         String sql = "SELECT * FROM Niveau WHERE Id_Niveau = ?";
@@ -52,7 +52,7 @@ public class NiveauDAO {
         return niveau;
     }
 
-    // Créer un nouveau niveau
+
     public Niveau createNiveau(Niveau niveau) {
         String sql = "INSERT INTO Niveau (Nom_Niveau) VALUES (?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -73,7 +73,7 @@ public class NiveauDAO {
         return niveau;
     }
 
-    // Supprimer un niveau par son ID
+
     public void deleteNiveau(int id) {
         String sql = "DELETE FROM Niveau WHERE Id_Niveau = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {

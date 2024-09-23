@@ -73,4 +73,46 @@ CREATE TABLE AAbsents (
 );
 
 
+INSERT INTO Niveau (Id_Niveau, Nom_Niveau) VALUES
+                                               (1, 'L1'),
+                                               (2, 'L2'),
+                                               (3, 'L3');
+
+
+INSERT INTO Groupe (Id_Groupe, Nom_Groupe, Id_Niveau) VALUES
+                                                          (1, 'Groupe A', 1),
+                                                          (2, 'Groupe B', 1),
+                                                          (3, 'Groupe C', 2);
+
+INSERT INTO Etudiant (Id_Etudiant, Nom, Prenom, Email, genre, Id_Groupe) VALUES
+                                                                             ('E001', 'Dupont', 'Jean', 'jean.dupont@example.com', 'M', 1),
+                                                                             ('E002', 'Martin', 'Alice', 'alice.martin@example.com', 'F', 1),
+                                                                             ('E003', 'Durand', 'Pierre', 'pierre.durand@example.com', 'M', 2),
+                                                                             ('E004', 'Lefevre', 'Sophie', 'sophie.lefevre@example.com', 'F', 3);
+
+INSERT INTO Professeur (Id, Nom, Prenom, Email) VALUES
+                                                    (1, 'Bernard', 'Louis', 'louis.bernard@example.com'),
+                                                    (2, 'Moreau', 'Claire', 'claire.moreau@example.com');
+
+
+INSERT INTO Cours (Id_Cours, Nom_Cours, Description, Id_Prof) VALUES
+                                                                  (1, 'PROG2', 'Introduction aux JAVA', 1),
+                                                                  (2, 'MGT1', 'Les differentes outils de google workspace', 2);
+
+
+INSERT INTO Absence (Id_Absence, Date_Absence, Motif, Justification, Id_Etudiant, Id_Cours) VALUES
+                                                                                                (1, '2024-09-01', TRUE, 'Maladie', 'E001', 1),
+                                                                                                (2, '2024-09-02', FALSE, NULL, 'E002', 2);
+
+
+INSERT INTO AAbsents (Id_Etudiant, Id_Cours) VALUES
+                                                 ('E001', 1),
+                                                 ('E002', 2);
+
+
+
+
+
+
+
 

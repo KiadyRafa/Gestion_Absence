@@ -14,7 +14,7 @@ public class EtudiantDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(EtudiantDAO.class);
 
-    // Récupérer tous les étudiants
+
     public List<Etudiant> findAllEtudiants() {
         List<Etudiant> etudiants = new ArrayList<>();
         String sql = "SELECT * FROM Etudiant";
@@ -35,12 +35,12 @@ public class EtudiantDAO {
         return etudiants;
     }
 
-    // Récupérer un étudiant par son ID
+
     public Etudiant findEtudiantById(String id) {
         Etudiant etudiant = null;
         String sql = "SELECT * FROM Etudiant WHERE Id_Etudiant = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
-            ps.setString(1, id);  // Changed to setString
+            ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 etudiant = new Etudiant(
@@ -56,7 +56,7 @@ public class EtudiantDAO {
         return etudiant;
     }
 
-    // Créer un nouvel étudiant
+
     public Etudiant createEtudiant(Etudiant etudiant) {
         String sql = "INSERT INTO Etudiant (Nom, Prenom, Email) VALUES (?, ?, ?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -79,11 +79,11 @@ public class EtudiantDAO {
         return etudiant;
     }
 
-    // Supprimer un étudiant par son ID
+
     public void deleteEtudiant(String id) {
         String sql = "DELETE FROM Etudiant WHERE Id_Etudiant = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
-            ps.setString(1, id);  // Changed to setString
+            ps.setString(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.error("Erreur lors de la suppression de l'étudiant avec l'ID {}", id, e);
