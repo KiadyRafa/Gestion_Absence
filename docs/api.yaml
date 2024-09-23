@@ -1,0 +1,327 @@
+openapi: 3.0.1
+info:
+  title: Final Exam API
+  description: API pour la gestion des étudiants, cours, niveaux, groupes, absences, ...
+  version: "1.0"
+servers:
+  - url: http://localhost:8080
+paths:
+  /etudiants:
+    get:
+      summary: Obtenir la liste de tous les étudiants
+      responses:
+        '200':
+          description: Liste des étudiants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Etudiant'
+    post:
+      summary: Créer un nouvel étudiant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Etudiant'
+      responses:
+        '201':
+          description: Étudiant créé
+  /etudiants/{id}:
+    get:
+      summary: Obtenir un étudiant par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Étudiant trouvé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Etudiant'
+    delete:
+      summary: Supprimer un étudiant par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Étudiant supprimé
+
+  /cours:
+    get:
+      summary: Obtenir la liste de tous les cours
+      responses:
+        '200':
+          description: Liste des cours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cours'
+    post:
+      summary: Créer un nouveau cours
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cours'
+      responses:
+        '201':
+          description: Cours créé
+  /cours/{id}:
+    get:
+      summary: Obtenir un cours par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cours trouvé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cours'
+    delete:
+      summary: Supprimer un cours par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cours supprimé
+
+  /niveaux:
+    get:
+      summary: Obtenir la liste de tous les niveaux
+      responses:
+        '200':
+          description: Liste des niveaux
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Niveau'
+    post:
+      summary: Créer un nouveau niveau
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Niveau'
+      responses:
+        '201':
+          description: Niveau créé
+  /niveaux/{id}:
+    get:
+      summary: Obtenir un niveau par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Niveau trouvé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Niveau'
+    delete:
+      summary: Supprimer un niveau par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Niveau supprimé
+
+  /groupes:
+    get:
+      summary: Obtenir la liste de tous les groupes
+      responses:
+        '200':
+          description: Liste des groupes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Groupe'
+    post:
+      summary: Créer un nouveau groupe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Groupe'
+      responses:
+        '201':
+          description: Groupe créé
+  /groupes/{id}:
+    get:
+      summary: Obtenir un groupe par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Groupe trouvé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Groupe'
+    delete:
+      summary: Supprimer un groupe par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Groupe supprimé
+
+  /absences:
+    get:
+      summary: Obtenir la liste de toutes les absences
+      responses:
+        '200':
+          description: Liste des absences
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Absence'
+    post:
+      summary: Créer une nouvelle absence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Absence'
+      responses:
+        '201':
+          description: Absence créée
+  /absences/{id}:
+    get:
+      summary: Obtenir une absence par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Absence trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Absence'
+    delete:
+      summary: Supprimer une absence par son ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Absence supprimée
+
+components:
+  schemas:
+    Etudiant:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nom:
+          type: string
+          example: "Jean Dupont"
+        email:
+          type: string
+          example: "jean.dupont@example.com"
+        niveau:
+          $ref: '#/components/schemas/Niveau'
+    Cours:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nom:
+          type: string
+          example: "PROG2"
+        professeur:
+          $ref: '#/components/schemas/Professeur'
+    Niveau:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nom:
+          type: string
+          example: "L1"
+    Groupe:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nom:
+          type: string
+          example: "Groupe J1"
+    Absence:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        date:
+          type: string
+          format: date
+          example: "2023-05-10"
+        etudiant:
+          $ref: '#/components/schemas/Etudiant'
+        cours:
+          $ref: '#/components/schemas/Cours'
+    Professeur:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nom:
+          type: string
+          example: "M. Dupuis"
+
