@@ -15,7 +15,7 @@ public class Groupe {
     private Niveau niveau;
     private List<Etudiant> etudiants;
 
-    // Constructor with only idGroupe and nomGroupe
+
     public Groupe(int idGroupe, String nomGroupe) {
         this.idGroupe = idGroupe;
         this.nomGroupe = nomGroupe;

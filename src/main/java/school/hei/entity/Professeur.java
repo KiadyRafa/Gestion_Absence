@@ -16,7 +16,7 @@ public class Professeur {
     private String email;
     private List<Cours> cours;
 
-    // Si nécessaire, tu peux personnaliser certains setters
+
     public void setIdProfesseur(int id) {
         this.id = id;
     }

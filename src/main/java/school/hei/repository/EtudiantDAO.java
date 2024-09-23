@@ -22,7 +22,7 @@ public class EtudiantDAO {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Etudiant etudiant = new Etudiant(
-                        rs.getString("Id_Etudiant"),  // Changed to getString
+                        rs.getString("Id_Etudiant"),
                         rs.getString("Nom"),
                         rs.getString("Prenom"),
                         rs.getString("Email")
@@ -36,7 +36,7 @@ public class EtudiantDAO {
     }
 
     // Récupérer un étudiant par son ID
-    public Etudiant findEtudiantById(String id) {  // Changed from int to String
+    public Etudiant findEtudiantById(String id) {
         Etudiant etudiant = null;
         String sql = "SELECT * FROM Etudiant WHERE Id_Etudiant = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
@@ -70,7 +70,7 @@ public class EtudiantDAO {
             }
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    etudiant.setIdEtudiant(String.valueOf(generatedKeys.getInt(1)));  // Convert ID to String
+                    etudiant.setIdEtudiant(String.valueOf(generatedKeys.getInt(1)));
                 }
             }
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class EtudiantDAO {
     }
 
     // Supprimer un étudiant par son ID
-    public void deleteEtudiant(String id) {  // Changed from int to String
+    public void deleteEtudiant(String id) {
         String sql = "DELETE FROM Etudiant WHERE Id_Etudiant = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
             ps.setString(1, id);  // Changed to setString

@@ -17,23 +17,23 @@ public class EtudiantService {
         this.etudiantDAO = etudiantDAO;
     }
 
-    // Récupérer tous les étudiants
+
     public List<Etudiant> getAllEtudiants() {
         return etudiantDAO.findAllEtudiants();
     }
 
-    // Récupérer un étudiant par son ID
-    public Etudiant getEtudiantById(int id) {
+
+    public Etudiant getEtudiantById(String id) {
         return etudiantDAO.findEtudiantById(id);
     }
 
-    // Créer un nouvel étudiant
+
     public Etudiant createEtudiant(Etudiant etudiant) {
         return etudiantDAO.createEtudiant(etudiant);
     }
 
-    // Supprimer un étudiant par son ID
-    public void deleteEtudiant(int id) {
+
+    public void deleteEtudiant(String id) {
         etudiantDAO.deleteEtudiant(id);
     }
 }

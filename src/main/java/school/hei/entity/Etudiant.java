@@ -18,7 +18,7 @@ public class Etudiant {
     private Groupe groupe;
     private List<Absence> absences;
 
-    // Custom constructor for idEtudiant, nom, prenom, email
+
     public Etudiant(String idEtudiant, String nom, String prenom, String email) {
         this.idEtudiant = idEtudiant;
         this.nom = nom;

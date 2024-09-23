@@ -22,7 +22,7 @@ public class EtudiantController {
 
     // Récupérer un étudiant par son ID
     @GetMapping("/{id}")
-    public Etudiant getEtudiantById(@PathVariable int id) {
+    public Etudiant getEtudiantById(@PathVariable String id) {  // Changement de int à String
         return etudiantService.getEtudiantById(id);
     }
 
@@ -34,7 +34,7 @@ public class EtudiantController {
 
     // Supprimer un étudiant par son ID
     @DeleteMapping("/{id}")
-    public void deleteEtudiant(@PathVariable int id) {
+    public void deleteEtudiant(@PathVariable String id) {  // Changement de int à String
         etudiantService.deleteEtudiant(id);
     }
 }

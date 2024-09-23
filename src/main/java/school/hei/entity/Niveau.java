@@ -14,7 +14,7 @@ public class Niveau {
     private String nomNiveau;
     private List<Groupe> groupes;
 
-    // Constructor with only idNiveau and nomNiveau (ignores groupes)
+
     public Niveau(int idNiveau, String nomNiveau) {
         this.idNiveau = idNiveau;
         this.nomNiveau = nomNiveau;

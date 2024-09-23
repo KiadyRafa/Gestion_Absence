@@ -14,10 +14,10 @@ public class ProfesseurDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfesseurDAO.class);
 
-    // Méthode pour récupérer tous les professeurs (sans departement)
+    // Méthode pour récupérer tous les professeurs
     public List<Professeur> findAllProfesseurs() {
         List<Professeur> professeurs = new ArrayList<>();
-        String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur";  // Pas de departement
+        String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur";
         try (Statement stmt = DBconnection.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -36,10 +36,10 @@ public class ProfesseurDAO {
         return professeurs;
     }
 
-    // Méthode pour récupérer un professeur par son ID (sans departement)
+    // Méthode pour récupérer un professeur par son ID
     public Professeur findProfesseurById(int id) {
         Professeur professeur = null;
-        String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur WHERE Id_Professeur = ?";  // Pas de departement
+        String sql = "SELECT Id_Professeur, Nom, Prenom, Email FROM Professeur WHERE Id_Professeur = ?";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -48,8 +48,8 @@ public class ProfesseurDAO {
                         rs.getInt("Id_Professeur"),
                         rs.getString("Nom"),
                         rs.getString("Prenom"),
-                        rs.getString("Email"),  // Pas de departement
-                        null  // Liste des cours à récupérer ailleurs si besoin
+                        rs.getString("Email"),
+                        null
                 );
             }
         } catch (SQLException e) {
@@ -60,11 +60,11 @@ public class ProfesseurDAO {
 
     // Méthode pour créer un nouveau professeur (sans departement)
     public Professeur createProfesseur(Professeur professeur) {
-        String sql = "INSERT INTO Professeur (Nom, Prenom, Email) VALUES (?, ?, ?)";  // Pas de departement
+        String sql = "INSERT INTO Professeur (Nom, Prenom, Email) VALUES (?, ?, ?)";
         try (PreparedStatement ps = DBconnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, professeur.getNom());
             ps.setString(2, professeur.getPrenom());
-            ps.setString(3, professeur.getEmail());  // Pas de departement
+            ps.setString(3, professeur.getEmail());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -72,7 +72,7 @@ public class ProfesseurDAO {
             }
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    professeur.setIdProfesseur(generatedKeys.getInt(1));  // Utilisation de setIdProfesseur
+                    professeur.setIdProfesseur(generatedKeys.getInt(1));
                 }
             }
         } catch (SQLException e) {

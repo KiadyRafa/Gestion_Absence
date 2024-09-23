@@ -17,22 +17,22 @@ public class NiveauService {
         this.niveauDAO = niveauDAO;
     }
 
-    // Récupérer tous les niveaux
+
     public List<Niveau> getAllNiveaux() {
         return niveauDAO.findAllNiveaux();
     }
 
-    // Récupérer un niveau par son ID
+
     public Niveau getNiveauById(int id) {
         return niveauDAO.findNiveauById(id);
     }
 
-    // Créer un nouveau niveau
+
     public Niveau createNiveau(Niveau niveau) {
         return niveauDAO.createNiveau(niveau);
     }
 
-    // Supprimer un niveau par son ID
+
     public void deleteNiveau(int id) {
         niveauDAO.deleteNiveau(id);
     }
